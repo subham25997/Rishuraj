@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Login Authentication
+    </title>
+    <style>
+        .main {
+            height: 100vh;
+            width: 100%;
+            background: #5c97e2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            width: 500px;
+            max-height: calc(100vh - 60px);
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 1px 7px #716d6d;
+        }
+
+        .card-title {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 0 15px;
+        }
+
+        .card-body {
+            display: flex;
+            padding: 15px;
+        }
+
+        .card-footer {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            justify-content: flex-end;
+        }
+
+        .login-form {
+            width: 100%;
+        }
+
+        .input-controls {
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .label-wrapper {
+            margin-bottom: 5px;
+            font-size: 18px;
+            color: #777;
+        }
+        .input-wrapper input {
+            width: calc(100% - 10px);
+            height: 36px;
+        }
+
+        .registration-sec {
+            padding: 15px 0;
+        }
+
+        button.login-btn {
+            background: #3F51B5;
+            color: #fff;
+            padding: 10px;
+            border: 1px solid #3F51B5;
+            min-width: 120px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="card">
+        <div class="card-title">
+            <h2 class="card-title-text">Login</h2>
+        </div>
+        <div class="card-body">
+            <form class="login-form">
+                <div class="input-controls">
+                    <div class="label-wrapper">
+                        <label>Email Id</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="email" placeholder="Example: xyz@abc.com">
+                    </div>
+                </div>
+                <div class="input-controls">
+                    <div class="label-wrapper">
+                        <label>Password</label>
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="password">
+                    </div>
+                </div>
+                <div class="registration-sec">
+                    New User? <a href="register.html">Sign Up</a>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer">
+            <button type="button" class="login-btn">Login</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
