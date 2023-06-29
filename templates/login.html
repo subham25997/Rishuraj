@@ -6,7 +6,7 @@
     </title>
     <style>
         .main {
-            height: 100vh;
+            min-height: 100vh;
             width: 100%;
             background: #5c97e2;
             display: flex;
@@ -14,12 +14,13 @@
             align-items: center;
         }
 
-        .card {
+        .card  {
             width: 500px;
-            max-height: calc(100vh - 60px);
+            /* max-height: calc(100vh - 60px); */
             background: #fff;
             border-radius: 5px;
             box-shadow: 0 1px 7px #716d6d;
+            margin: 30px;
         }
 
         .card-title {
@@ -50,7 +51,6 @@
         }
         .label-wrapper {
             margin-bottom: 5px;
-            font-size: 18px;
             color: #777;
         }
         .input-wrapper input {
@@ -58,8 +58,11 @@
             height: 36px;
         }
 
-        .registration-sec {
-            padding: 15px 0;
+        .error-sec {
+            padding: 15px;
+            background: #d820202e;
+            border-left: 3px solid red;
+            color: red;
         }
 
         button.login-btn {
@@ -72,39 +75,41 @@
         }
     </style>
 </head>
-<body>
-<div class="main">
-    <div class="card">
-        <div class="card-title">
-            <h2 class="card-title-text">Login</h2>
-        </div>
-        <div class="card-body">
-            <form class="login-form">
-                <div class="input-controls">
-                    <div class="label-wrapper">
-                        <label>Email Id</label>
+<body style="margin: 0;">
+    <form class="login-form" action="/login/validate" method="post">
+        <div class="main">
+                <div class="card">
+                    <div class="card-title">
+                        <h2 class="card-title-text">Login</h2>
                     </div>
-                    <div class="input-wrapper">
-                        <input type="email" placeholder="Example: xyz@abc.com">
+                    <div class="card-body">
+                            <div style="width: 100%;">
+                                <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>Email Id</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input name="email" required type="email" placeholder="Example: xyz@abc.com">
+                                    </div>
+                                </div>
+                                <div class="input-controls">
+                                    <div class="label-wrapper">
+                                        <label>Password</label>
+                                    </div>
+                                    <div class="input-wrapper">
+                                        <input name="password" required type="password">
+                                    </div>
+                                </div>
+
+                                    {% block content %}
+                                    {% endblock %}
+                            </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="login-btn">Login</button>
                     </div>
                 </div>
-                <div class="input-controls">
-                    <div class="label-wrapper">
-                        <label>Password</label>
-                    </div>
-                    <div class="input-wrapper">
-                        <input type="password">
-                    </div>
-                </div>
-                <div class="registration-sec">
-                    New User? <a href="register.html">Sign Up</a>
-                </div>
-            </form>
         </div>
-        <div class="card-footer">
-            <button type="button" class="login-btn">Login</button>
-        </div>
-    </div>
-</div>
+    </form>
 </body>
 </html>

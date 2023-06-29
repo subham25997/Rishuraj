@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            margin: 0;
+        }
+        .row {
+            display: flex;
+        }
+
+        .left-menu {
+            height: 100vh;
+            overflow: auto;
+            width: 300px;
+            padding: 15px 0;
+            background: #13175c;
+        }
+
+        .main-content {
+            width: calc(100% - 300px);
+            background: #eee;
+        }
+
+        nav.right-header {
+            display: flex;
+            box-shadow: 0 0px 5px #777;
+            align-items: center;
+            padding: 0 15px;
+            background: #fff;
+        }
+
+        .section-heading {
+            flex-grow: 1;
+        }
+        .profile-link {
+            flex-shrink: 1;
+            display: flex;
+            background: #eee;
+            padding: 12px 15px;
+            margin-right: -15px;
+            cursor: pointer;
+            position: relative;
+        }
+        .profile-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #d7d7d7;
+            border-radius: 16px;
+            background: #d7d7d7;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin: 15px 0;
+            color: #061974;
+        }
+
+        .card {
+            background: #fff;
+            margin: 10px;
+            padding: 15px;
+            height: calc(100% - 136px);
+            box-shadow: 0 2px 4px #777;
+        }
+
+        .side-nav-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .side-nav-menu li a {
+            text-decoration: none;
+            display: inline-block;
+            width: calc(100% - 44px);
+            padding: 15px 20px;
+            color: #fff;
+            border-left: 4px solid #13175c;
+        }
+
+        .side-nav-menu li a.active {
+            border-left: 4px solid #fff;
+            background: #2a8388;
+        }
+
+        .side-nav-menu li a .fa {
+            margin-right: 10px;
+        }
+
+        .logout-menu {
+            position: absolute;
+            right: 10px;
+            top: 60px;
+            background: #fff;
+            min-width: 127px;
+            padding: 10px;
+            box-shadow: 1px 1px 3px #777;
+            display: none;
+        }
+
+        .logout-menu-item a {
+            text-decoration: none;
+            color: #0069ff;
+            display: block;
+            background: #eee;
+            padding: 10px;
+            border: 1px solid #eee;
+            box-shadow: 1px 1px 5px #777;
+        }
+
+        .menu-item a:hover {
+            box-shadow: 1px 1px 8px #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="left-menu">
+            <ul class="side-nav-menu">
+                {% for menu in menus %}
+                <li>
+                    <a class="{{ 'active' if activeMenu==menu[1]  else '' }}" href="{{ menu[3] }}"> <i class="fa {{ menu[2] }}"></i>{{ menu[1] }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="main-content">
+            <nav class="right-header">
+                <div class="section-heading">
+                   <h3 class="section-title"> {{ title }}</h3>
+                </div>
+                <a class="profile-link" onclick="openLogout(event)">
+                    <div style="margin-right: 10px;">
+                        <div><strong>{{ user_full_name }}</strong></div>
+                        <div style="font-size: 14px;">{{ user_role }}</div>
+                    </div>
+                    <div class="profile-icon">
+                        <i class="fa fa-user"></i>
+                    </div>
+                </a>
+
+                    <div id="logout-menu" class="logout-menu">
+                        <div class="logout-menu-item">
+                            <a href="/logout">Logout</a>
+                        </div>
+                    </div>
+            </nav>
+            <div class="card">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        document.onclick = function() {
+            document.getElementById("logout-menu").style.display = 'none';
+        }
+        function openLogout(e) {
+            e.stopPropagation();
+            document.getElementById("logout-menu").style.display = 'block';
+        }
+    </script>
+</body>
+</html>
